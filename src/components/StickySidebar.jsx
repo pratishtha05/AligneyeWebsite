@@ -17,7 +17,7 @@ const StickySidebar = () => {
             target="_blank"
             aria-label="Instagram"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-teal-600 transition duration-300"
+            className="text-gray-500 hover:text-teal-600 transition duration-300 hover:scale-110"
           >
             <Instagram size={22} />
           </a>
@@ -26,7 +26,7 @@ const StickySidebar = () => {
             target="_blank"
             aria-label="LinkedIn"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-teal-600 transition duration-300"
+            className="text-gray-500 hover:text-teal-600 transition duration-300 hover:scale-110"
           >
             <Linkedin size={22} />
           </a>
@@ -35,7 +35,7 @@ const StickySidebar = () => {
             target="_blank"
             aria-label="YouTube"
             rel="noopener noreferrer"
-            className="text-gray-500 hover:text-teal-600 transition duration-300"
+            className="text-gray-500 hover:text-teal-600 transition duration-300 hover:scale-110"
           >
             <Youtube size={22} />
           </a>

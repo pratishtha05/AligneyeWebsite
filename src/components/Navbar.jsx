@@ -21,28 +21,26 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!isProductPage) {
-        setIsScrolled(window.scrollY > 10);
-      }
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isProductPage]);
+  }, []);
 
   const renderCTA = () => {
     if (currentPath === "/product") {
       return (
         <button
-          onClick={() => navigate("/support")} // or any support/help route you plan
-          className="bg-white text-teal-600 border border-teal-600 px-6 py-2 rounded-full font-semibold hover:bg-teal-50 transition-transform"
+          onClick={() => navigate("/support")}
+          className="bg-teal-600 text-white border border-teal-600 px-4 py-2 rounded-full font-semibold hover:bg-teal-500 transition-all duration-300 w-full sm:w-auto hover:cursor-pointer hover:scale-105"
         >
           Need Help?
         </button>
       );
     }
     return (
-      <Link to="/product">
-        <button className="bg-teal-500 text-black px-6 py-2 rounded-full font-semibold hover:scale-105 transition-transform hover:cursor-pointer">
+      <Link to="/product" className="w-full sm:w-auto">
+        <button className="bg-teal-600 text-white px-4 py-2 rounded-full font-semibold hover:scale-105 hover:cursor-pointer transition-all duration-300 w-full sm:w-auto hover:bg-teal-500">
           Shop Now
         </button>
       </Link>
@@ -51,30 +49,34 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 px-6 py-4 transition-all duration-300 ${
-        isProductPage
-          ? "bg-white shadow-md"
-          : isScrolled
-          ? "bg-white shadow-md"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 px-4 sm:px-6 md:px-8 py-3 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link to="/">
-          <img src={logo} alt="AlignEye Logo" className="w-32 h-auto" />
+        <Link to="/" className="flex-shrink-0">
+          <img src={logo} alt="AlignEye Logo" className="h-8 sm:h-10 md:h-12 w-auto" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-10">
+        <nav className="hidden md:flex items-center space-x-8 lg:space-x-10">
+          {currentPath !== "/" && (
+            <Link
+              to="/"
+              className={`font-medium relative group transition-colors duration-200 ${
+                isScrolled ? "text-black hover:text-teal-600" : "text-white hover:text-teal-400"
+              }`}
+            >
+              Home
+              <span className="absolute -bottom-1 left-0 h-0.5 bg-teal-400 w-0 group-hover:w-full transition-all duration-300"></span>
+            </Link>
+          )}
+
           {navLinks.map((item) => {
             const path = `/${item.toLowerCase()}`;
             const isActive = currentPath === path;
-            const textColor = isProductPage
-              ? isActive
-                ? "text-teal-600"
-                : "text-black hover:text-teal-600"
-              : isScrolled
+            const textColor = isScrolled
               ? isActive
                 ? "text-teal-600"
                 : "text-black hover:text-teal-600"
@@ -86,6 +88,7 @@ const Navbar = () => {
               <Link
                 key={item}
                 to={path}
+                onClick={() => setIsMenuOpen(false)}
                 className={`font-medium relative group transition-colors duration-200 ${textColor}`}
               >
                 {item}
@@ -99,16 +102,16 @@ const Navbar = () => {
           })}
         </nav>
 
-        {/* Desktop Icons */}
+        {/* Desktop Icons & CTA */}
         <div className="hidden md:flex items-center space-x-4">
           <button
             onClick={() => setIsCartOpen(true)}
             aria-label="Open Cart"
             className={`relative p-2 hover:text-teal-600 hover:cursor-pointer rounded-full ${
-              isProductPage || isScrolled ? "text-gray-700" : "text-white"
+              isScrolled ? "text-gray-700" : "text-white"
             }`}
           >
-            <ShoppingCart className="w-5 h-5" />
+            <ShoppingCart className="w-5 h-5 hover:scale-115 hover:bg-teal-500" />
             {totalItems > 0 && (
               <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1 rounded-full">
                 {totalItems}
@@ -124,7 +127,7 @@ const Navbar = () => {
             onClick={() => setIsCartOpen(true)}
             aria-label="Open Cart"
             className={`relative p-2 rounded-full ${
-              isProductPage || isScrolled ? "text-black" : "text-white"
+              isScrolled ? "text-black" : "text-white"
             }`}
           >
             <ShoppingCart className="w-5 h-5" />
@@ -137,24 +140,27 @@ const Navbar = () => {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`${
-              isProductPage || isScrolled ? "text-black" : "text-white"
-            }`}
+            className={`${isScrolled ? "text-black" : "text-white"}`}
             aria-label="Toggle Menu"
           >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Nav */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-gray-800/95 backdrop-blur-sm border-t border-gray-700 px-6 py-4 z-40">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-gray-800/95 backdrop-blur-sm border-t border-gray-700 px-4 sm:px-6 py-4 z-40">
           <nav className="flex flex-col space-y-4">
+            {currentPath !== "/" && (
+              <Link
+                to="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white text-lg font-medium hover:text-teal-400"
+              >
+                Home
+              </Link>
+            )}
             {navLinks.map((item) => (
               <Link
                 key={item}

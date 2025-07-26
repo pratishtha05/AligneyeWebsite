@@ -1,72 +1,96 @@
 import React from "react";
 import { X } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const CartSidebar = ({ isOpen, onClose }) => {
   const { items, removeItem, updateQuantity, totalPrice } = useCart();
 
+  const navigate = useNavigate();
+
   const handleCheckout = () => {
     if (items.length === 0) return;
-    alert("Order placed successfully!");
-    // ✅ No clearCart here
-    onClose(); // Still close the sidebar
+
+    onClose();
+    setTimeout(() => {
+      navigate("/payment");
+    }, 300);
   };
 
   return (
     <>
-      {/* Overlay to detect outside clicks */}
+      {/* Overlay */}
       {isOpen && (
-        <div onClick={onClose} className="fixed inset-0 bg-black/30 z-40" />
+        <div
+          onClick={onClose}
+          className="fixed inset-0 bg-black/30 z-40 md:hidden"
+          aria-hidden="true"
+        />
       )}
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-[380px] bg-white shadow-2xl z-50 transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-[90%] md:w-[420px] lg:w-[480px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-lg font-semibold">Your Cart</h2>
-          <button onClick={onClose}>
+        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+          <h2 className="text-base sm:text-lg font-semibold text-gray-800">
+            Your Cart
+          </h2>
+          <button
+            onClick={onClose}
+            className="p-1 rounded-full hover:bg-gray-100"
+            aria-label="Close cart"
+          >
             <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
 
-        {/* Items */}
-        <div className="p-4 space-y-4 overflow-y-auto max-h-[calc(100vh-200px)]">
+        {/* Items List */}
+        <div className="p-4 space-y-3 sm:space-y-4 overflow-y-auto max-h-[calc(100vh-180px)]">
           {items.length === 0 ? (
-            <p className="text-gray-500">Your cart is empty.</p>
+            <p className="text-gray-500 text-sm sm:text-base text-center py-8">
+              Your cart is empty.
+            </p>
           ) : (
             items.map((item) => (
               <div
                 key={item.id}
-                className="flex justify-between items-center border rounded-lg p-3 shadow-sm bg-gray-50"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 border rounded-lg p-3 shadow-sm bg-gray-50"
               >
-                <div className="flex flex-col">
-                  <p className="font-medium">{item.name}</p>
-                  <p className="text-sm text-gray-500">₹{item.price}</p>
-                  <div className="flex items-center space-x-2 mt-1">
+                <div className="flex-1">
+                  <h3 className="font-medium text-sm sm:text-base">{item.name}</h3>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1">
+                    ₹{item.price.toLocaleString()}
+                  </p>
+                  {/* Quantity Controls */}
+                  <div className="flex items-center mt-2">
                     <button
                       onClick={() =>
                         updateQuantity(item.id, Math.max(1, item.quantity - 1))
                       }
-                      className="px-2 text-gray-600 text-lg"
+                      className="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded"
+                      aria-label="Decrease quantity"
                     >
                       -
                     </button>
-                    <span className="font-medium">{item.quantity}</span>
+                    <span className="mx-3 text-sm sm:text-base">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="px-2 text-gray-600 text-lg"
+                      className="px-2 py-1 text-gray-600 hover:bg-gray-200 rounded"
+                      aria-label="Increase quantity"
                     >
                       +
                     </button>
                   </div>
                 </div>
+
+                {/* Remove Button */}
                 <button
                   onClick={() => removeItem(item.id)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-red-500 hover:text-red-700 self-start sm:self-center"
                   title="Remove item"
                 >
                   <X className="w-5 h-5" />
@@ -77,20 +101,25 @@ const CartSidebar = ({ isOpen, onClose }) => {
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t space-y-2">
-          <div className="flex justify-between font-medium">
-            <span>Total:</span>
-            <span>₹{totalPrice}</span>
+        <div className="p-4 border-t border-gray-200 space-y-3">
+          <div className="flex justify-between items-center font-medium text-sm sm:text-base">
+            <span className="text-gray-700">Total:</span>
+            <span className="text-gray-900">₹{totalPrice.toLocaleString()}</span>
           </div>
           <button
             onClick={handleCheckout}
-            className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700"
+            disabled={items.length === 0}
+            className={`w-full py-2.5 px-4 rounded-lg font-medium transition ${
+              items.length === 0
+                ? "bg-gray-300 cursor-not-allowed text-gray-500"
+                : "bg-teal-600 hover:bg-teal-700 text-white"
+            }`}
           >
             Checkout
           </button>
           <button
             onClick={onClose}
-            className="w-full text-sm text-gray-600 underline"
+            className="w-full text-center text-sm text-gray-600 underline hover:text-gray-800"
           >
             Continue Shopping
           </button>

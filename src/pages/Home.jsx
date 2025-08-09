@@ -25,11 +25,24 @@ import {
 
 // assets
 import product from "../assets/product_image.png";
-import img1 from "../assets/realTimeTracking.png";
-import img2 from "../assets/training.png";
 import aligneyeProductImage from "../assets/product_.png";
 import bgImage from "../assets/background.png";
 import ChatBot from "../components/ChatBot";
+import feature1 from "../assets/SmartCoach.jpg";
+import feature2 from "../assets/SmartWalk.jpg";
+import feature3 from "../assets/SmartMeditation.jpg";
+import appFeature1 from "../assets/1000+Exercises.jpg";
+import appFeature2 from "../assets/20+SportsMode.jpg";
+import appFeature3 from "../assets/PersonalisedProgressTracking.jpg";
+import appFeature4 from "../assets/Community&Badges.jpg";
+import imgStep1 from "../assets/step1.png";
+import imgStep2 from "../assets/step2.png";
+import doctorImg from "../assets/doctor.png";
+import user1 from "../assets/user1.png";
+import user2 from "../assets/user2.png";
+import user3 from "../assets/user3.png";
+import user4 from "../assets/user4.png";
+import user5 from "../assets/user5.png";
 
 // cart feature
 import { useCart } from "../context/CartContext";
@@ -64,7 +77,7 @@ const Home = () => {
             <div className="space-y-8 lg:pr-8">
               <div className="space-y-2">
                 <div className="text-sm font-medium text-gray-400 tracking-wider uppercase">
-                  Posture. Redefined.
+                  <span className="text-teal-600">| </span>Posture. Redefined.
                 </div>
                 <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
                   Transform Your Posture.
@@ -81,12 +94,18 @@ const Home = () => {
                 >
                   Shop Now
                 </Link>
-                <Link
-                  to="/working"
+                <button
+                  onClick={() => {
+                    document
+                      .getElementById("how-it-works-video")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                      });
+                  }}
                   className="border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black hover:cursor-pointer transition-transform hover:scale-105"
                 >
                   How It Works
-                </Link>
+                </button>
               </div>
             </div>
             {/* Right - Product */}
@@ -117,32 +136,38 @@ const Home = () => {
             </h2>
           </div>
           {/* Product Video */}
-          <div className="relative bg-black rounded-xl sm:rounded-2xl overflow-hidden aspect-[21/9] mb-10 md:mb-16">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button className="group flex items-center space-x-3 sm:space-x-4 text-white hover:text-teal-400 transition-colors duration-300">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  <Play className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-black ml-1 hover:cursor-pointer" />
-                </div>
-              </button>
-            </div>
+          <div
+            id="how-it-works-video"
+            className="relative bg-black rounded-xl sm:rounded-2xl overflow-hidden aspect-[21/9] mb-10 md:mb-16"
+          >
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src=""
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
           </div>
+
           {/* 3 Main Features */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-10 md:mb-16">
             {[
               {
-                img: img1,
+                img: feature1,
                 tag: "Personalized Posture Guidance",
                 title: "SMART COACH",
                 desc: "An AI-powered coach that adapts to your behavior and gently trains you to improve over time.",
               },
               {
-                img: img2,
+                img: feature2,
                 tag: "Posture Tracking On the Go",
                 title: "SMART WALK",
                 desc: "Monitors your walking posture and provides instant haptic feedback to keep you aligned throughout the day.",
               },
               {
-                img: img2,
+                img: feature3,
                 tag: "Mind-Body Posture Sync",
                 title: "SMART MEDITATION",
                 desc: "Enhance your meditation with posture-aware breathing sessions and gentle alignment reminders.",
@@ -215,7 +240,7 @@ const Home = () => {
           />
           {[
             {
-              id: 1,
+              id: 2,
               icon: FolderSync,
               title: "Data Sync & Progress Tracking",
               description:
@@ -224,7 +249,7 @@ const Home = () => {
                 "left-5 top-1/4 -translate-y-1/2 text-left items-end ml-10",
             },
             {
-              id: 2,
+              id: 3,
               icon: Bluetooth,
               title: "Powered by Bluetooth 5.2",
               description:
@@ -233,7 +258,7 @@ const Home = () => {
                 "right-10 top-1/4 -translate-y-1/2 text-left items-start",
             },
             {
-              id: 3,
+              id: 6,
               icon: BatteryFull,
               title: "Uninterrupted All-Day Power",
               description:
@@ -258,7 +283,7 @@ const Home = () => {
               position: "right-10 bottom-50 text-left items-start",
             },
             {
-              id: 6,
+              id: 1,
               icon: Truck,
               title: "Smart IMU Sensor",
               description:
@@ -267,7 +292,11 @@ const Home = () => {
                 "top-0 left-1/2 -translate-x-1/2 text-left items-center",
             },
           ].map((feature) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: feature.id * 0.2 }}
+              viewport={{ once: true }}
               key={feature.id}
               className={`absolute max-w-[400px] w-full px-4 ${feature.position}`}
             >
@@ -283,7 +312,7 @@ const Home = () => {
                   <div className="w-20 h-0.5 bg-gray-500 mt-2"></div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         {/* Tablet & Below: Card layout under product image */}
@@ -354,7 +383,11 @@ const Home = () => {
                   "top-0 left-1/2 -translate-x-1/2 text-left items-center",
               },
             ].map((feature) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: feature.id * 0.2 }}
+                viewport={{ once: true }}
                 key={feature.id}
                 className="flex items-start space-x-4 bg-neutral-900 p-4 rounded-xl"
               >
@@ -372,7 +405,7 @@ const Home = () => {
                   </p>
                   <div className="w-16 h-0.5 bg-gray-600 mt-2"></div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -386,7 +419,8 @@ const Home = () => {
         {/* Heading */}
         <div className="text-center text-white mb-10">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold">
-            Just <span className="text-teal-500">3</span> Simple Steps..
+            Your <span className="text-teal-500">2</span> Steps to Better
+            Posture
           </h2>
         </div>
         {/* Steps */}
@@ -395,25 +429,17 @@ const Home = () => {
             id: "01",
             title: "Wear & Connect",
             description:
-              "Slip on the AlignEye neckband and sync it with your mobile app in seconds.",
-            // img: imgStep1,
+              "Put on the Posture Corrector Neckband and connect it to your mobile app. It will give you gentle reminders to fix your posture throughout the day.",
+            img: imgStep1,
             reverse: false,
           },
           {
             id: "02",
             title: "Track in Real Time",
             description:
-              "Sit, stand, or move — AlignEye gently corrects posture as you go.",
-            // img: imgStep2,
+              "The Posture Corrector Neckband discreetly monitors your posture and provides instant, subtle vibrations whenever you slouch, helping you become more aware of your alignment.",
+            img: imgStep2,
             reverse: true,
-          },
-          {
-            id: "03",
-            title: "Improve Consistently",
-            description:
-              "Train muscle memory and see lasting changes with daily micro-reminders.",
-            // img: imgStep3,
-            reverse: false,
           },
         ].map(({ id, title, description, img, reverse }) => (
           <div
@@ -427,7 +453,7 @@ const Home = () => {
           >
             {/* Text */}
             <div className="w-full lg:w-1/2 text-white text-left">
-              <p className="text-4xl sm:text-5xl font-extrabold text-gray-300 mb-4 opacity-80">
+              <p className="text-4xl sm:text-5xl font-extrabold text-teal-500 mb-4">
                 {id}
               </p>
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">
@@ -436,9 +462,6 @@ const Home = () => {
               <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 max-w-md">
                 {description}
               </p>
-              <button className="bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-teal-500 hover:text-white transition-all duration-300">
-                Explore More
-              </button>
             </div>
             {/* Image */}
             <div className="w-full lg:w-1/2">
@@ -472,7 +495,7 @@ const Home = () => {
             <div className="md:w-1/3 text-left">
               <p className="text-gray-700 text-sm sm:text-base md:text-lg">
                 Get a clear view of your alignment history, receive posture
-                coaching, and set long-term goals — all in the easy-to-use
+                coaching, and set long-term goals, all in the easy-to-use
                 Aligneye App.
               </p>
             </div>
@@ -482,47 +505,48 @@ const Home = () => {
             {[
               {
                 id: 1,
-                // image: appGraphImage,
+                image: appFeature1,
                 title: "1000+ Exercises",
                 description:
                   "Access a vast library of posture-improving exercises tailored to different body types, needs, and fitness levels.",
               },
               {
                 id: 2,
-                // image: doctorImage,
+                image: appFeature2,
                 title: "20+ Sports Mode",
                 description:
                   "Track posture dynamics across 20+ sports and activities—from running to cycling—with mode-specific insights.",
               },
               {
                 id: 3,
-                // image: privacyImage,
+                image: appFeature3,
                 title: "Personalised Progress Report",
                 description:
                   "Receive detailed posture reports and real-time feedback, helping you measure improvement and stay motivated.",
               },
               {
                 id: 4,
-                // image: connectivityImage,
+                image: appFeature4,
                 title: "Community & Badges",
                 description:
                   "Join a growing community, unlock achievement badges, and stay engaged as you improve your posture journey.",
               },
             ].map((card) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: card.id * 0.2 }}
+                viewport={{ once: true }}
                 key={card.id}
-                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden flex flex-col"
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl hover:scale-101 hover:cursor-pointer transition-shadow duration-300 overflow-hidden flex flex-col"
               >
-                <div className="relative w-full h-40 sm:h-48 md:h-52 bg-gray-200 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full h-40 sm:h-48 md:h-52 bg-gray-200 hover:scale-101 flex items-center justify-center overflow-hidden">
                   <img
                     src={card.image}
                     alt={card.title}
                     className="w-full h-full object-cover"
                     draggable="false"
                   />
-                  <div className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 bg-gray-800 text-white p-1.5 sm:p-2 rounded-full z-10 hover:cursor-pointer hover:scale-105">
-                    <Plus size={18} />
-                  </div>
                 </div>
                 <div className="p-4 sm:p-5 flex flex-col flex-grow">
                   <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-1 sm:mb-2">
@@ -532,7 +556,7 @@ const Home = () => {
                     {card.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -566,7 +590,7 @@ const Home = () => {
             </p>
             {/* Full text for tablet/desktop */}
             <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed hidden sm:block">
-              Aligneye isn’t just another wearable—it’s a clinically validated
+              Aligneye isn't just another wearable - it's a clinically validated
               posture correction solution developed in collaboration with
               orthopedic specialists, physiotherapists, and data scientists.
               Every feature is rooted in research and designed to deliver
@@ -640,13 +664,11 @@ const Home = () => {
           </div>
           {/* Right Visual */}
           <div className="flex justify-center items-center p-4 sm:p-6 bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-xl border border-neutral-700">
-            <svg
-              className="w-28 sm:w-32 md:w-40 h-28 sm:h-32 md:h-40 text-teal-500"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-            </svg>
+            <img
+              src={doctorImg}
+              alt="image of a doctor"
+              className="w-full h-full"
+            />
           </div>
         </div>
 
@@ -708,70 +730,43 @@ const Home = () => {
           {[
             {
               id: 1,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=User1", // Placeholder image
-              text: "Aligneye has been a game-changer for my desk posture! My back pain has significantly reduced, and I feel more energetic throughout the day. Highly recommend this app!",
-              name: "Emily R.",
+              avatar: user1,
+              text: "Working from home, my posture suffered from long hours at the laptop. Aligneye's gentle nudges were a lifesaver. My chronic back pain has reduced, and I feel so much more productive now. It's a fantastic solution.",
+              name: "Vikram Reddy",
               rating: 5,
               type: "user",
             },
             {
               id: 2,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=Expert1", // Placeholder image
-              text: "As a chiropractor, I'm genuinely impressed by Aligneye's comprehensive approach to posture correction. It's an excellent, evidence-based tool for clients seeking long-term spinal health and preventive care.",
-              name: "Dr. Alex Chen",
-              designation: "Chiropractor",
-              rating: 5,
-              type: "expert",
+              avatar: user2,
+              text: "As a teacher, I'm on my feet all day. Aligneye helped me stop slouching and significantly improved my alignment. I now have far less fatigue at the end of the day. Highly recommend to fellow educators!",
+              name: "Sandeep Kumar",
+              rating: 4,
+              type: "user",
             },
             {
               id: 3,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=User2", // Placeholder image
-              text: "I used to slouch terribly, but Aligneye's personalized exercises and real-time feedback made a significant difference. My confidence has boosted along with my posture!",
-              name: "Mark T.",
-              rating: 4,
+              avatar: user3,
+              text: "I was skeptical, but the results speak for themselves. After using the neckband, I've noticed a significant and lasting improvement in my posture. I'm now holding myself up straighter without even thinking about it. A fantastic device!",
+              name: "Ananya Sharma",
+              rating: 5,
               type: "user",
             },
             {
               id: 4,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=User3", // Placeholder image
-              text: "The real-time feedback is invaluable. Aligneye isn't just an app; it's like having a personal posture coach. Seeing my daily progress keeps me incredibly motivated.",
-              name: "Sarah L.",
-              rating: 5,
+              avatar: user4,
+              text: "I used to suffer from constant neck and shoulder pain from my desk job. Neckband's gentle reminders were a game-changer. My pain is almost gone, and I feel so much better after just a few weeks of use.",
+              name: "Rohan Patel",
+              rating: 3,
               type: "user",
             },
             {
               id: 5,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=Expert2", // Placeholder image
-              text: "Aligneye seamlessly integrates cutting-edge AI with practical, easy-to-follow exercises. It represents a significant advancement in wearable health technology for effective posture improvement.",
-              name: "Prof. David Lee",
-              designation: "Biomechanics Researcher",
-              rating: 5,
-              type: "expert",
-            },
-            {
-              id: 6,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=User4", // Placeholder image
-              text: "After just a few weeks, I noticed a profound improvement in my posture. The variety of exercises keeps things fresh and engaging. Truly effective and highly recommended!",
-              name: "Jessica P.",
+              avatar: user5,
+              text: "My posture was a mess from years of desk work. Aligneye's gentle reminders and targeted exercises have made a huge difference. I feel taller and more aligned, and my confidence has improved as a result.",
+              name: "Priya Das",
               rating: 4,
               type: "user",
-            },
-            {
-              id: 7,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=User5", // Placeholder image
-              text: "My posture was a mess from years of desk work. Aligneye's gentle reminders and targeted exercises have made a huge difference. I feel taller and more aligned!",
-              name: "David K.",
-              rating: 5,
-              type: "user",
-            },
-            {
-              id: 8,
-              avatar: "https://placehold.co/100x100/000000/FFFFFF?text=Expert3", // Placeholder image
-              text: "From a physical therapy perspective, Aligneye offers a robust and user-friendly platform for patients to engage in their posture rehabilitation at home. Its data tracking is particularly useful.",
-              name: "Dr. Lena Park",
-              designation: "Physical Therapist",
-              rating: 5,
-              type: "expert",
             },
           ]
             .filter((item) => item.type === "user")
@@ -843,7 +838,7 @@ const Home = () => {
             </h2>
             <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl">
               Aligneye gives you the power to monitor, correct, and sustain your
-              posture—all from one intelligent device. Compact, comfortable, and
+              posture - all from one intelligent device. Compact, comfortable, and
               designed to work with your day.
             </p>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
@@ -858,13 +853,16 @@ const Home = () => {
               {/* Discount Badge */}
               <div className="relative flex items-center">
                 <div className="bg-red-500 text-white font-semibold text-xs sm:text-sm px-3 py-1 rounded-full animate-bounce">
-                  42% OFF
+                  60% OFF
                 </div>
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-red-400 rounded-full animate-ping"></div>
               </div>
             </div>
             {/* Tax Note */}
             <div className="text-sm text-gray-400">Inclusive of all taxes</div>
+            <p className="text-sm text-green-500 font-medium">
+              Limited Time Offer – Ends Soon!
+            </p>
             {/* CTA Button */}
             <button
               onClick={handleAddToCart}
@@ -901,7 +899,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }} className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900"
+          >
             It’s Time to <span className="text-teal-600">Realign.</span>
           </motion.h2>
           {/* Subtext - Mobile (Short) */}
@@ -909,7 +909,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }} className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto block md:hidden">
+            viewport={{ once: true }}
+            className="text-base sm:text-lg text-gray-600 max-w-xl mx-auto block md:hidden"
+          >
             Your daily companion to feel better, stand taller, and stay aligned
             from Day 1.
           </motion.p>
@@ -918,7 +920,9 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }} className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto hidden md:block">
+            viewport={{ once: true }}
+            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto hidden md:block"
+          >
             Not just a posture tracker — it’s your daily companion in building
             long-term body awareness. Feel the difference in your focus, energy,
             and confidence starting Day 1.
@@ -929,16 +933,17 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4">
+            className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6 mt-4"
+          >
             <Link
               to="/product"
               className="bg-teal-600 text-white px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:bg-teal-700 hover:cursor-pointer transition-all duration-300 shadow-sm hover:shadow-md hover:scale-105"
             >
               Shop Now →
             </Link>
-            <button className="border border-gray-300 hover:scale-105 text-black px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:border-teal-500 hover:text-teal-600 hover:cursor-pointer transition-all duration-300">
+            <Link to="/product" className="border border-gray-300 hover:scale-105 text-black px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:border-teal-500 hover:text-teal-600 hover:cursor-pointer transition-all duration-300">
               Explore More
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

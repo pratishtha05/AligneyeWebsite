@@ -13,7 +13,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
     onClose();
     setTimeout(() => {
-      navigate("/payment");
+      navigate("#");
     }, 300);
   };
 
@@ -30,7 +30,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-full sm:w-[90%] md:w-[420px] lg:w-[480px] bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full sm:w-[90%] md:w-[420px] lg:w-[480px] bg-white shadow-2xl z-[90] transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -44,7 +44,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
             className="p-1 rounded-full hover:bg-gray-100"
             aria-label="Close cart"
           >
-            <X className="w-5 h-5 text-gray-600" />
+            <X className="w-5 h-5 text-gray-600 hover:cursor-pointer" />
           </button>
         </div>
 
@@ -93,7 +93,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
                   className="text-red-500 hover:text-red-700 self-start sm:self-center"
                   title="Remove item"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 hover:cursor-pointer" />
                 </button>
               </div>
             ))
@@ -109,7 +109,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
           <button
             onClick={handleCheckout}
             disabled={items.length === 0}
-            className={`w-full py-2.5 px-4 rounded-lg font-medium transition ${
+            className={`w-full py-2.5 px-4 rounded-lg font-medium transition hover:cursor-pointer ${
               items.length === 0
                 ? "bg-gray-300 cursor-not-allowed text-gray-500"
                 : "bg-teal-600 hover:bg-teal-700 text-white"
@@ -119,7 +119,7 @@ const CartSidebar = ({ isOpen, onClose }) => {
           </button>
           <button
             onClick={onClose}
-            className="w-full text-center text-sm text-gray-600 underline hover:text-gray-800"
+            className="w-full text-center text-sm text-gray-600 underline hover:cursor-pointer hover:text-gray-800"
           >
             Continue Shopping
           </button>

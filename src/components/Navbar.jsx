@@ -30,12 +30,14 @@ const Navbar = () => {
   const renderCTA = () => {
     if (currentPath === "/product") {
       return (
-        <button
+        <Link to="/product">
+          <button
           onClick={() => navigate("/support")}
           className="bg-teal-600 text-white border border-teal-600 px-4 py-2 rounded-full font-semibold hover:bg-teal-500 transition-all duration-300 w-full sm:w-auto hover:cursor-pointer hover:scale-105"
         >
           Need Help?
         </button>
+        </Link>
       );
     }
     return (
@@ -111,7 +113,7 @@ const Navbar = () => {
               isScrolled ? "text-gray-700" : "text-white"
             }`}
           >
-            <ShoppingCart className="w-5 h-5 hover:scale-115 hover:bg-teal-500" />
+            <ShoppingCart className="w-5 h-5 hover:scale-115 hover:text-teal-500" />
             {totalItems > 0 && (
               <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs px-1 rounded-full">
                 {totalItems}

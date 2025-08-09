@@ -8,8 +8,6 @@ import ScrollToTop from './components/ScrollToTop';
 import Education from './pages/Education';
 import Blogs from './pages/Blogs';
 import Science from './pages/Science';
-import Payment from './pages/Payment';
-import Success from "./pages/Success";
 import StickySidebar from './components/StickySidebar';
 
 function App() {
@@ -25,8 +23,6 @@ function App() {
           <Route path="/product" element={<Product />} />
           <Route path="/education" element={<Education />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/success" element={<Success />} />
         </Routes>
         <Footer/>
       </Router>

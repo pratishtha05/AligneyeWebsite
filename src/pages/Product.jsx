@@ -1,5 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ShoppingCart, ChevronDown, ChevronUp, Star, Minus, Plus, CheckCircle, ChevronLeft, ChevronRight,} from "lucide-react";
+import {
+  ShoppingCart,
+  ChevronDown,
+  ChevronUp,
+  Star,
+  Minus,
+  Plus,
+  CheckCircle,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -7,12 +17,24 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useCart } from "../context/CartContext";
+import productImg1 from "../assets/product_.png";
+import productImg2 from "../assets/product.png";
+import productImg3 from "../assets/imageTransparent.png";
+import productImg4 from "../assets/person.png";
+import atWork from "../assets/atWork.jpg";
+import move from "../assets/move.png";
+import home from "../assets/home.png";
+import user1 from "../assets/user1.png";
+import user2 from "../assets/user2.png";
+import user3 from "../assets/user3.png";
+import user4 from "../assets/user4.png";
+import user5 from "../assets/user5.png";
 
 const ProductPage = () => {
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
   const [openFaq, setOpenFaq] = useState(null);
-  const [mainImage, setMainImage] = useState("/assets/product-main-1.png");
+  const [mainImage, setMainImage] = useState(productImg1);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const sectionRef = useRef(null);
@@ -21,15 +43,10 @@ const ProductPage = () => {
     name: "Posture Corrector Neckband",
     price: 2999,
     originalPrice: 6999,
-    discountPercent: 42, // Recalculated (6999-2999)/6999 * 100 = 57.14
+    discountPercent: 60,
     description:
-      "A smart neckband that gently corrects your posture—so you don’t have to think about it. Experience discreet, consistent support that adapts to your daily movements, guiding you towards better spinal alignment effortlessly.",
-    images: [
-      "/assets/product-main-1.png", // Replace with your actual product images
-      "/assets/product-main-2.png",
-      "/assets/product-main-3.png",
-      "/assets/product-main-4.png",
-    ],
+      "A smart neckband that gently corrects your posture - so you don't have to think about it. Experience discreet, consistent support that adapts to your daily movements, guiding you towards better spinal alignment effortlessly.",
+    images: [productImg1, productImg2, productImg3, productImg4],
     reviews: { avg: 4.7, count: 842 },
   };
 
@@ -101,25 +118,17 @@ const ProductPage = () => {
       {/* SECTION 1: Product Overview */}
       <section
         ref={sectionRef}
-        className="max-w-6xl mx-auto py-12 sm:py-16 px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12"
+        className="min-h-screen max-w-6xl mx-auto py-12 sm:py-16 px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12"
       >
         {/* Product Images */}
-        <div className="flex flex-col gap-6">
-          <div className="relative flex justify-center items-center w-full aspect-square bg-neutral-800 rounded-lg overflow-hidden shadow-sm border border-neutral-700">
-            <img
-              src={mainImage}
-              alt={`${product.name} - ${mainImage}`}
-              className="object-contain w-full h-full p-4"
-            />
-          </div>
-
-          {/* Mobile Thumbnails (lg:hidden) */}
-          <div className="flex flex-wrap lg:hidden gap-3 justify-center mt-4">
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* Vertical Thumbnails on the left (desktop only) */}
+          <div className="hidden lg:flex flex-col gap-3">
             {product.images.map((imagePath, idx) => (
               <div
                 key={idx}
                 onClick={() => setMainImage(imagePath)}
-                className={`w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-md overflow-hidden border-2 cursor-pointer transition-all duration-200 ${
+                className={`w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-md border-2 cursor-pointer transition-all duration-200 ${
                   mainImage === imagePath
                     ? "border-teal-500 shadow-md"
                     : "border-neutral-700 hover:border-neutral-500"
@@ -134,13 +143,22 @@ const ProductPage = () => {
             ))}
           </div>
 
-          {/* Desktop Thumbnails (hidden on mobile) */}
-          <div className="hidden lg:flex gap-4">
+          {/* Main Image */}
+          <div className="relative flex justify-center items-center w-full aspect-square bg-neutral-300 rounded-lg overflow-hidden shadow-sm border border-neutral-700">
+            <img
+              src={mainImage}
+              alt={`${product.name} - ${mainImage}`}
+              className="object-contain w-full h-full p-4"
+            />
+          </div>
+
+          {/* Mobile Thumbnails (lg:hidden) */}
+          <div className="flex flex-wrap lg:hidden gap-3 justify-center mt-4">
             {product.images.map((imagePath, idx) => (
               <div
                 key={idx}
                 onClick={() => setMainImage(imagePath)}
-                className={`w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-md border-2 cursor-pointer transition-all duration-200 ${
+                className={`w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-md overflow-hidden border-2 cursor-pointer transition-all duration-200 ${
                   mainImage === imagePath
                     ? "border-teal-500 shadow-md"
                     : "border-neutral-700 hover:border-neutral-500"
@@ -178,7 +196,7 @@ const ProductPage = () => {
               />
             ))}
             <span className="text-sm sm:text-base text-white font-medium">
-              {product.reviews.avg} ({product.reviews.count} reviews)
+              {product.reviews.avg} 
             </span>
           </div>
 
@@ -212,7 +230,7 @@ const ProductPage = () => {
             <div className="flex items-center justify-center border border-neutral-700 rounded-lg overflow-hidden shadow-sm w-full sm:w-auto">
               <button
                 onClick={() => qty > 1 && setQty(qty - 1)}
-                className="p-2 sm:p-3 hover:bg-neutral-800 text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="p-2 sm:p-3 hover:bg-neutral-800 hover:cursor-pointer text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 disabled={qty === 1}
               >
                 <Minus size={18} />
@@ -222,7 +240,7 @@ const ProductPage = () => {
               </span>
               <button
                 onClick={() => setQty(qty + 1)}
-                className="p-2 sm:p-3 hover:bg-neutral-800 text-gray-300 transition-colors"
+                className="p-2 sm:p-3 hover:bg-neutral-800 hover:cursor-pointer text-gray-300 transition-colors"
               >
                 <Plus size={18} />
               </button>
@@ -230,7 +248,7 @@ const ProductPage = () => {
 
             <button
               onClick={handleAddToCart}
-              className="flex items-center justify-center gap-2 bg-teal-600 text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:bg-teal-700 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+              className="flex items-center justify-center gap-2 bg-teal-600 hover:cursor-pointer text-white px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold shadow-lg hover:bg-teal-700 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
             >
               <ShoppingCart size={20} />
               Add to Cart
@@ -267,7 +285,7 @@ const ProductPage = () => {
               {
                 title: "App Connectivity",
                 description:
-                  "Track posture progress and customize feedback using the intuitive AlignEye app.",
+                  "Track posture progress and customize feedback using the intuitive Aligneye app.",
                 icon: CheckCircle,
               },
               {
@@ -332,11 +350,11 @@ const ProductPage = () => {
         </div>
 
         {/* Full-Width Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 w-full h-full gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full h-full gap-0">
           {[
             {
               title: "At Work",
-              image: "/assets/lifestyle-work.jpg",
+              image: atWork,
               details: [
                 "Perfect for long desk sessions",
                 "Provides subtle reminders",
@@ -345,7 +363,7 @@ const ProductPage = () => {
             },
             {
               title: "On the Move",
-              image: "/assets/lifestyle-walk.jpg",
+              image: move,
               details: [
                 "Tracks posture while walking or commuting",
                 "Real-time feedback via AlignApp",
@@ -353,23 +371,15 @@ const ProductPage = () => {
               ],
             },
             {
-              title: "At Home",
-              image: "/assets/lifestyle-home.jpg",
-              details: [
-                "Comfortable even while lounging",
-                "Encourages relaxation with alignment",
-                "Silent nudges for healthy habits",
-              ],
-            },
-            {
               title: "While Creating",
-              image: "/assets/lifestyle-create.jpg",
+              image: home,
               details: [
                 "Great for designers, writers, coders",
                 "Posture tracking without interruption",
                 "Boosts concentration and clarity",
               ],
             },
+            // Removed the 4th "While Creating" item
           ].map((item, i) => (
             <div
               key={i}
@@ -382,7 +392,7 @@ const ProductPage = () => {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
               />
 
-              {/* Hover Overlay - Hidden by default, appears on hover */}
+              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4">
                 <div className="text-white max-w-xs sm:max-w-sm space-y-3 text-center sm:text-left">
                   <h3 className="text-xl sm:text-2xl font-bold">
@@ -396,7 +406,7 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              {/* Title Badge (always visible unless hovered) */}
+              {/* Title Badge */}
               <div className="absolute bottom-4 left-4 bg-black/60 text-white text-lg sm:text-xl font-semibold px-4 py-2 rounded shadow-md transition-opacity duration-300 group-hover:opacity-0">
                 {item.title}
               </div>
@@ -405,124 +415,6 @@ const ProductPage = () => {
         </div>
       </section>
 
-      {/* SECTION 4: Feature Carousel */}
-      <section className="relative w-full h-[80vh] min-h-[500px] bg-neutral-950 text-white overflow-hidden">
-        {/* Intro Slide */}
-        {currentIndex === 0 && (
-          <motion.div
-            key="intro-slide"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="w-full flex flex-col h-full justify-center items-center px-4 sm:px-6 text-center"
-          >
-            <div className="flex flex-col items-center space-y-6 sm:space-y-8">
-              <div className="bg-white text-black rounded-full p-3 sm:p-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 sm:h-8 w-6 sm:w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
-              </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight">
-                Explore What AlignEye Can Do
-              </h1>
-              <p className="text-base sm:text-lg text-gray-400 max-w-md sm:max-w-xl">
-                AlignEye isn’t just a neckband — it’s a smart, wearable system
-                designed to improve your posture effortlessly through intuitive
-                features and seamless feedback.
-              </p>
-              <button
-                onClick={goNext}
-                className="bg-teal-600 hover:bg-teal-700 hover:cursor-pointer text-white font-medium px-6 py-3 rounded-md text-base sm:text-lg transition-all duration-300 transform hover:scale-105"
-              >
-                Next →
-              </button>
-            </div>
-
-            {/* Progress dots */}
-            <div className="absolute bottom-6 flex gap-3">
-              {[...Array(carouselItems.length + 1)].map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2.5 h-2.5 rounded-full ${
-                    idx === currentIndex
-                      ? "bg-white"
-                      : "bg-neutral-700 hover:bg-neutral-500"
-                  }`}
-                />
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* Feature Slides */}
-        {currentIndex > 0 && (
-          <div className="min-h-[80vh] flex items-center py-10 px-4">
-            <div className="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 lg:gap-16">
-              <AnimatePresence mode="wait">
-                {/* Left Text Content */}
-                <motion.div
-                  key={`text-${currentIndex}`}
-                  initial={{ opacity: 0, x: -60 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 60 }}
-                  transition={{ duration: 0.6 }}
-                  className="flex-1 max-w-xl text-center lg:text-left"
-                >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight mb-3 sm:mb-4">
-                    {carouselItems[currentIndex - 1].title}
-                  </h2>
-
-                  <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 leading-relaxed">
-                    {carouselItems[currentIndex - 1].description}
-                  </p>
-
-                  <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4">
-                    <button
-                      onClick={goPrev}
-                      className="bg-neutral-800 hover:bg-neutral-700 hover:cursor-pointer text-white py-2 px-5 sm:px-6 rounded-lg text-sm sm:text-base font-medium transition duration-300 border border-neutral-700"
-                    >
-                      ← Prev
-                    </button>
-                    <button
-                      onClick={goNext}
-                      className="bg-neutral-800 hover:bg-neutral-700 hover:cursor-pointer text-white py-2 px-5 sm:px-6 rounded-lg text-sm sm:text-base font-medium transition duration-300 border border-neutral-700"
-                    >
-                      Next →
-                    </button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Progress Dots */}
-            <div className="absolute bottom-6 w-full flex justify-center gap-3">
-              {[...Array(carouselItems.length + 1)].map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-2.5 h-2.5 rounded-full transition duration-300 shadow-md ${
-                    idx === currentIndex
-                      ? "bg-teal-500 scale-125"
-                      : "bg-neutral-700 hover:bg-neutral-500"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      </section>
 
       {/* SECTION 5: Technical Specifications */}
       <section className="bg-gray-50 py-16 sm:py-20 px-4">
@@ -535,7 +427,7 @@ const ProductPage = () => {
             </h2>
             <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
               Every detail of the Aligneye neckband is built with your comfort
-              and alignment in mind — from feather-light materials to smart
+              and alignment in mind, from feather-light materials to smart
               motion sensors. Here's a look under the hood.
             </p>
           </div>
@@ -555,19 +447,13 @@ const ProductPage = () => {
             <div className="border-l-4 border-teal-500 pl-4 py-1">
               <p className="font-bold text-gray-800 mb-0.5">Sensors</p>
               <p className="text-gray-600">
-                Dual-axis gyro & posture detection unit
+                Smart IMU sensors
               </p>
             </div>
             <div className="border-l-4 border-teal-500 pl-4 py-1">
               <p className="font-bold text-gray-800 mb-0.5">Connectivity</p>
               <p className="text-gray-600">
-                Bluetooth 5.0 – seamless sync with app
-              </p>
-            </div>
-            <div className="border-l-4 border-teal-500 pl-4 py-1">
-              <p className="font-bold text-gray-800 mb-0.5">Weight</p>
-              <p className="text-gray-600">
-                Only 52 grams – forget you’re wearing it
+                Bluetooth 5.2 - seamless sync with app
               </p>
             </div>
             <div className="border-l-4 border-teal-500 pl-4 py-1">
@@ -579,19 +465,7 @@ const ProductPage = () => {
           </div>
         </div>
         {/*more textual info */}
-        <div className="text-black mt-10 mr-10 ml-10">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde quos
-          facere enim tempore consequuntur aut nostrum quas inventore quasi.
-          Voluptas pariatur vel dolores ipsum et, odio laboriosam nemo nobis
-          molestiae debitis minus eos ducimus deserunt aperiam laudantium nam
-          unde architecto cum maiores repellat non? Debitis possimus asperiores
-          officiis consectetur quia cupiditate blanditiis quas enim aliquam
-          fugit minus earum perferendis quod minima impedit molestiae inventore
-          ullam deserunt optio magnam aperiam rem, accusantium officia?
-          Accusantium odit voluptatibus aperiam, quas nesciunt fugiat ad itaque
-          id quod iste illo officiis soluta eaque dolorum officia quisquam dolor
-          quaerat fuga voluptates voluptatem sequi beatae! Ab, quod?
-        </div>
+        <div className="text-black mt-10 mr-10 ml-10"></div>
       </section>
 
       {/* SECTION 6: Testimonials */}
@@ -637,35 +511,32 @@ const ProductPage = () => {
               className="pb-10"
             >
               {[
-                {
-                  quote:
-                    "AlignEye has helped me stay focused while working from home. I don’t even realize I’m wearing it—yet my posture has never been better.",
-                  name: "Aarav Mehta",
-                  title: "Product Designer",
-                  avatar: "/assets/avatar1.jpg",
-                },
-                {
-                  quote:
-                    "As a medical student, I sit for long hours. AlignEye gently nudges me to straighten up without distraction. Game changer!",
-                  name: "Sneha Kapoor",
-                  title: "MBBS Student",
-                  avatar: "/assets/avatar2.jpg",
-                },
-                {
-                  quote:
-                    "After trying multiple devices, AlignEye finally worked. It’s minimal, smart, and doesn’t need constant attention.",
-                  name: "Rahul Bansal",
-                  title: "Freelance Developer",
-                  avatar: "/assets/avatar3.jpg",
-                },
-                {
-                  quote:
-                    "Was skeptical at first, but AlignEye actually improved my back posture while gaming. Feels natural now.",
-                  name: "Kabir Singh",
-                  title: "Streamer & Gamer",
-                  avatar: "/assets/avatar4.jpg",
-                },
-              ].map((t, idx) => (
+                          {
+                            avatar: user1,
+                            quote: "Working from home, my posture suffered from long hours at the laptop. Aligneye's gentle nudges were a lifesaver. My chronic back pain has reduced, and I feel so much more productive now. It's a fantastic solution.",
+                            name: "Vikram Reddy",
+                          },
+                          {
+                            avatar: user2,
+                            quote: "As a teacher, I'm on my feet all day. Aligneye helped me stop slouching and significantly improved my alignment. I now have far less fatigue at the end of the day. Highly recommend to fellow educators!",
+                            name: "Sandeep Kumar",
+                          },
+                          {
+                            avatar: user3,
+                            quote: "I was skeptical, but the results speak for themselves. After using the neckband, I've noticed a significant and lasting improvement in my posture. I'm now holding myself up straighter without even thinking about it. A fantastic device!",
+                            name: "Ananya Sharma",
+                          },
+                          {
+                            avatar: user4,
+                            quote: "I used to suffer from constant neck and shoulder pain from my desk job. Neckband's gentle reminders were a game-changer. My pain is almost gone, and I feel so much better after just a few weeks of use.",
+                            name: "Rohan Patel",
+                          },
+                          {
+                            avatar: user5,
+                            quote: "My posture was a mess from years of desk work. Aligneye's gentle reminders and targeted exercises have made a huge difference. I feel taller and more aligned, and my confidence has improved as a result.",
+                            name: "Priya Das",
+                          },
+                        ].map((t, idx) => (
                 <SwiperSlide key={idx}>
                   <div className="h-[240px] sm:h-[250px] md:h-[260px] bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between">
                     {/* Quote */}
@@ -684,7 +555,6 @@ const ProductPage = () => {
                         <h4 className="text-gray-900 font-semibold text-xs sm:text-sm md:text-base">
                           {t.name}
                         </h4>
-                        <span className="text-xs text-gray-500">{t.title}</span>
                       </div>
                     </div>
                   </div>
@@ -713,7 +583,7 @@ const ProductPage = () => {
           {[
             {
               q: "How do they help with posture?",
-              a: "They detect slouching and give you gentle haptic reminders to correct your posture—subtle yet effective. This active feedback helps build muscle memory over time.",
+              a: "They detect slouching and give you gentle haptic reminders to correct your posture-subtle yet effective. This active feedback helps build muscle memory over time.",
             },
             {
               q: "Is there an app?",
@@ -721,11 +591,7 @@ const ProductPage = () => {
             },
             {
               q: "Battery life?",
-              a: "Up to 10 hours of active use on a single charge, with quick-charging capabilities for on-the-go convenience. A full charge takes approximately 90 minutes.",
-            },
-            {
-              q: "What is the return policy?",
-              a: "We offer a hassle-free 7-day easy return policy. If you're not satisfied, simply return the product within 7 days for a full refund. Conditions apply.",
+              a: "Up to 10 hours of active use on a single charge, with quick-charging capabilities for on-the-go convenience.",
             },
           ].map((faq, index) => (
             <div
@@ -765,50 +631,6 @@ const ProductPage = () => {
               </AnimatePresence>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* SECTION 8: Guarantee & Trust */}
-      <section className="bg-white py-12 sm:py-16 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-10 sm:mb-12">
-            Your Trust, Our Promise
-          </h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 text-center">
-            <div className="space-y-2 flex flex-col items-center">
-              <div className="text-teal-600 text-3xl sm:text-4xl font-bold mb-2">
-                7-Day
-              </div>
-              <p className="text-gray-700 text-sm sm:text-base font-semibold px-2 sm:px-4">
-                Easy Return Policy
-              </p>
-            </div>
-            <div className="space-y-2 flex flex-col items-center">
-              <div className="text-teal-600 text-3xl sm:text-4xl font-bold mb-2">
-                6-Month
-              </div>
-              <p className="text-gray-700 text-sm sm:text-base font-semibold px-2 sm:px-4">
-                Replacement Warranty
-              </p>
-            </div>
-            <div className="space-y-2 flex flex-col items-center">
-              <div className="text-teal-600 text-3xl sm:text-4xl font-bold mb-2">
-                100%
-              </div>
-              <p className="text-gray-700 text-sm sm:text-base font-semibold px-2 sm:px-4">
-                Physio-Approved Design
-              </p>
-            </div>
-            <div className="space-y-2 flex flex-col items-center">
-              <div className="text-teal-600 text-3xl sm:text-4xl font-bold mb-2">
-                Made in 🇮🇳
-              </div>
-              <p className="text-gray-700 text-sm sm:text-base font-semibold px-2 sm:px-4">
-                Designed & Built in India
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 

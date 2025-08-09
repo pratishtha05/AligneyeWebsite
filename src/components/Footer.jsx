@@ -44,18 +44,21 @@ const Footer = () => {
             <div className="flex justify-center lg:justify-start mt-6 space-x-3 sm:space-x-4">
               <a
                 href="https://www.instagram.com/aligneye/"
+                target="_blank"
                 className="bg-neutral-800 p-2 rounded-full hover:bg-teal-600 transition"
               >
                 <Instagram size={18} className="text-white" />
               </a>
               <a
                 href="https://www.linkedin.com/company/aligneye/"
+                target="_blank"
                 className="bg-neutral-800 p-2 rounded-full hover:bg-teal-600 transition"
               >
                 <Linkedin size={18} className="text-white" />
               </a>
               <a
                 href="https://www.youtube.com/@AlignEye"
+                target="_blank"
                 className="bg-neutral-800 p-2 rounded-full hover:bg-teal-600 transition"
               >
                 <Youtube size={18} className="text-white" />
@@ -64,7 +67,7 @@ const Footer = () => {
           </div>
 
           {/* Right: Community CTA */}
-          <div className="mt-10 lg:mt-0 lg:w-full lg:max-w-md">
+          {/* <div className="mt-10 lg:mt-0 lg:w-full lg:max-w-md">
             <h3 className="text-lg font-semibold text-white mb-3 text-center lg:text-left">
               Join the AlignEye Community
             </h3>
@@ -85,7 +88,7 @@ const Footer = () => {
                 Join Now
               </button>
             </form>
-          </div>
+          </div> */}
         </div>
 
         {/* Main Links Section -mobile version */}
@@ -212,7 +215,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start hover:cursor-pointer">
                 <MapPin className="mr-2 mt-1 text-teal-400" size={16} />
-                <span className="hover:text-gray-300">India</span>
+                <span className="hover:text-gray-300">Technology Business Incubator, Block 3, UIET, Panjab University, Chandigarh</span>
               </li>
             </ul>
           </div>
@@ -229,12 +232,6 @@ const Footer = () => {
             </a>
             <a href="#" className="hover:text-white transition">
               Terms
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Shipping
-            </a>
-            <a href="#" className="hover:text-white transition">
-              Returns
             </a>
           </div>
         </div>

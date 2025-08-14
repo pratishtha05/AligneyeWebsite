@@ -24,25 +24,27 @@ import {
 } from "lucide-react";
 
 // assets
-import product from "../assets/product_image.png";
-import aligneyeProductImage from "../assets/product_.png";
-import bgImage from "../assets/background.png";
+import product from "../assets/product_image.webp";
+import aligneyeProductImage from "../assets/product_.webp";
+import bgImage from "../assets/background.webp";
+import feature1 from "../assets/SmartCoach.webp";
+import feature2 from "../assets/SmartWalk.webp";
+import feature3 from "../assets/SmartMeditation.webp";
+import appFeature1 from "../assets/1000+Exercises.webp";
+import appFeature2 from "../assets/20+SportsMode.webp";
+import appFeature3 from "../assets/PersonalisedProgressTracking.webp";
+import appFeature4 from "../assets/Community&Badges.webp";
+import imgStep1 from "../assets/step1.webp";
+import imgStep2 from "../assets/step2.webp";
+import doctorImg from "../assets/doctor.webp";
+import user1 from "../assets/user1.webp";
+import user2 from "../assets/user2.webp";
+import user3 from "../assets/user3.webp";
+import user4 from "../assets/user4.webp";
+import user5 from "../assets/user5.webp";
+
+// components
 import ChatBot from "../components/ChatBot";
-import feature1 from "../assets/SmartCoach.jpg";
-import feature2 from "../assets/SmartWalk.jpg";
-import feature3 from "../assets/SmartMeditation.jpg";
-import appFeature1 from "../assets/1000+Exercises.jpg";
-import appFeature2 from "../assets/20+SportsMode.jpg";
-import appFeature3 from "../assets/PersonalisedProgressTracking.jpg";
-import appFeature4 from "../assets/Community&Badges.jpg";
-import imgStep1 from "../assets/step1.png";
-import imgStep2 from "../assets/step2.png";
-import doctorImg from "../assets/doctor.png";
-import user1 from "../assets/user1.png";
-import user2 from "../assets/user2.png";
-import user3 from "../assets/user3.png";
-import user4 from "../assets/user4.png";
-import user5 from "../assets/user5.png";
 
 // cart feature
 import { useCart } from "../context/CartContext";

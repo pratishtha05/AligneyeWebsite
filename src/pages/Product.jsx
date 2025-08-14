@@ -17,18 +17,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useCart } from "../context/CartContext";
-import productImg1 from "../assets/product_.png";
-import productImg2 from "../assets/product.png";
-import productImg3 from "../assets/imageTransparent.png";
-import productImg4 from "../assets/person.png";
-import atWork from "../assets/atWork.jpg";
-import move from "../assets/move.png";
-import home from "../assets/home.png";
-import user1 from "../assets/user1.png";
-import user2 from "../assets/user2.png";
-import user3 from "../assets/user3.png";
-import user4 from "../assets/user4.png";
-import user5 from "../assets/user5.png";
+import productImg1 from "../assets/product_.webp";
+import productImg2 from "../assets/product.webp";
+import productImg3 from "../assets/imageTransparent.webp";
+import productImg4 from "../assets/person.webp";
+import atWork from "../assets/atWork.webp";
+import move from "../assets/move.webp";
+import home from "../assets/home.webp";
+import user1 from "../assets/user1.webp";
+import user2 from "../assets/user2.webp";
+import user3 from "../assets/user3.webp";
+import user4 from "../assets/user4.webp";
+import user5 from "../assets/user5.webp";
 
 const ProductPage = () => {
   const { addItem } = useCart();

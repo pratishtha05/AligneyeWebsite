@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../assets/aligneyeFinalLogo.png";
+import logo from "../assets/aligneyeFinalLogo.webp";
 import CartSidebar from "./CartSidebar";
 import { useCart } from "../context/CartContext";
 

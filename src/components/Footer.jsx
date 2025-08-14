@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../assets/aligneyeFinalLogo.png";
+import logo from "../assets/aligneyeFinalLogo.webp";
 import {
   Facebook,
   Twitter,

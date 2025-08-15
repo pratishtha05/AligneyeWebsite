@@ -95,7 +95,7 @@ const Home = () => {
                   to="/product"
                   className="bg-teal-600 text-white font-medium px-6 py-3 rounded-full hover:bg-teal-500 hover:cursor-pointer transition-transform hover:scale-105"
                 >
-                  <div>
+                  <div className="flex gap-2">
                     Get Early Access <ShoppingBag />
                   </div>
                 </Link>

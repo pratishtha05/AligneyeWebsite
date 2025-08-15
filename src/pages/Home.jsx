@@ -21,6 +21,7 @@ import {
   BatteryFull,
   CheckCircle,
   ShoppingCart,
+  ShoppingBag
 } from "lucide-react";
 
 // assets
@@ -85,7 +86,7 @@ const Home = () => {
                   Transform Your Posture.
                 </h1>
                 <p className="text-gray-300 text-base md:text-lg">
-                  With AlignEye’s posture corrector neckband, align your body
+                  With AlignEye's posture corrector neckband, align your body
                   and elevate your presence—wherever life takes you.
                 </p>
               </div>
@@ -94,7 +95,9 @@ const Home = () => {
                   to="/product"
                   className="bg-teal-600 text-white font-medium px-6 py-3 rounded-full hover:bg-teal-500 hover:cursor-pointer transition-transform hover:scale-105"
                 >
-                  Shop Now
+                  <div>
+                    Get Early Access <ShoppingBag />
+                  </div>
                 </Link>
                 <button
                   onClick={() => {

@@ -22,8 +22,8 @@ import productImg2 from "../assets/product.webp";
 import productImg3 from "../assets/imageTransparent.webp";
 import productImg4 from "../assets/person.webp";
 import atWork from "../assets/atWork.webp";
-import move from "../assets/move.webp";
-import home from "../assets/home.webp";
+import move from "../assets/onTheMove.webp";
+import home from "../assets/whileMeditation.webp";
 import user1 from "../assets/user1.webp";
 import user2 from "../assets/user2.webp";
 import user3 from "../assets/user3.webp";
@@ -196,7 +196,7 @@ const ProductPage = () => {
               />
             ))}
             <span className="text-sm sm:text-base text-white font-medium">
-              {product.reviews.avg} 
+              {product.reviews.avg}
             </span>
           </div>
 
@@ -371,14 +371,15 @@ const ProductPage = () => {
               ],
             },
             {
-              title: "While Creating",
+              title: "While Meditation",
               image: home,
               details: [
-                "Great for designers, writers, coders",
-                "Posture tracking without interruption",
-                "Boosts concentration and clarity",
+                "Supports deep breathing and mindfulness",
+                "Tracks posture to enhance relaxation",
+                "Helps maintain calm and focus throughout the session",
               ],
             },
+
             // Removed the 4th "While Creating" item
           ].map((item, i) => (
             <div
@@ -415,7 +416,6 @@ const ProductPage = () => {
         </div>
       </section>
 
-
       {/* SECTION 5: Technical Specifications */}
       <section className="bg-gray-50 py-16 sm:py-20 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-start">
@@ -446,9 +446,7 @@ const ProductPage = () => {
             </div>
             <div className="border-l-4 border-teal-500 pl-4 py-1">
               <p className="font-bold text-gray-800 mb-0.5">Sensors</p>
-              <p className="text-gray-600">
-                Smart IMU sensors
-              </p>
+              <p className="text-gray-600">Smart IMU sensors</p>
             </div>
             <div className="border-l-4 border-teal-500 pl-4 py-1">
               <p className="font-bold text-gray-800 mb-0.5">Connectivity</p>
@@ -511,32 +509,37 @@ const ProductPage = () => {
               className="pb-10"
             >
               {[
-                          {
-                            avatar: user1,
-                            quote: "Working from home, my posture suffered from long hours at the laptop. Aligneye's gentle nudges were a lifesaver. My chronic back pain has reduced, and I feel so much more productive now. It's a fantastic solution.",
-                            name: "Vikram Reddy",
-                          },
-                          {
-                            avatar: user2,
-                            quote: "As a teacher, I'm on my feet all day. Aligneye helped me stop slouching and significantly improved my alignment. I now have far less fatigue at the end of the day. Highly recommend to fellow educators!",
-                            name: "Sandeep Kumar",
-                          },
-                          {
-                            avatar: user3,
-                            quote: "I was skeptical, but the results speak for themselves. After using the neckband, I've noticed a significant and lasting improvement in my posture. I'm now holding myself up straighter without even thinking about it. A fantastic device!",
-                            name: "Ananya Sharma",
-                          },
-                          {
-                            avatar: user4,
-                            quote: "I used to suffer from constant neck and shoulder pain from my desk job. Neckband's gentle reminders were a game-changer. My pain is almost gone, and I feel so much better after just a few weeks of use.",
-                            name: "Rohan Patel",
-                          },
-                          {
-                            avatar: user5,
-                            quote: "My posture was a mess from years of desk work. Aligneye's gentle reminders and targeted exercises have made a huge difference. I feel taller and more aligned, and my confidence has improved as a result.",
-                            name: "Priya Das",
-                          },
-                        ].map((t, idx) => (
+                {
+                  avatar: user1,
+                  quote:
+                    "Working from home, my posture suffered from long hours at the laptop. Aligneye's gentle nudges were a lifesaver. My chronic back pain has reduced, and I feel so much more productive now. It's a fantastic solution.",
+                  name: "Vikram Reddy",
+                },
+                {
+                  avatar: user2,
+                  quote:
+                    "As a teacher, I'm on my feet all day. Aligneye helped me stop slouching and significantly improved my alignment. I now have far less fatigue at the end of the day. Highly recommend to fellow educators!",
+                  name: "Sandeep Kumar",
+                },
+                {
+                  avatar: user3,
+                  quote:
+                    "I was skeptical, but the results speak for themselves. After using the neckband, I've noticed a significant and lasting improvement in my posture. I'm now holding myself up straighter without even thinking about it. A fantastic device!",
+                  name: "Ananya Sharma",
+                },
+                {
+                  avatar: user4,
+                  quote:
+                    "I used to suffer from constant neck and shoulder pain from my desk job. Neckband's gentle reminders were a game-changer. My pain is almost gone, and I feel so much better after just a few weeks of use.",
+                  name: "Rohan Patel",
+                },
+                {
+                  avatar: user5,
+                  quote:
+                    "My posture was a mess from years of desk work. Aligneye's gentle reminders and targeted exercises have made a huge difference. I feel taller and more aligned, and my confidence has improved as a result.",
+                  name: "Priya Das",
+                },
+              ].map((t, idx) => (
                 <SwiperSlide key={idx}>
                   <div className="h-[240px] sm:h-[250px] md:h-[260px] bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between">
                     {/* Quote */}

@@ -21,7 +21,7 @@ import {
   BatteryFull,
   CheckCircle,
   ShoppingCart,
-  ShoppingBag
+  ShoppingBag,
 } from "lucide-react";
 
 // assets
@@ -49,6 +49,7 @@ import ChatBot from "../components/ChatBot";
 
 // cart feature
 import { useCart } from "../context/CartContext";
+import HandbookReminder from "../components/HandbookReminder";
 
 const Home = () => {
   const item = {
@@ -68,6 +69,8 @@ const Home = () => {
     <div>
       {/* chat bot */}
       <ChatBot />
+
+      <HandbookReminder />
 
       {/* section1: hero section */}
       <section
@@ -90,12 +93,12 @@ const Home = () => {
                   and elevate your presence—wherever life takes you.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-4 mt-4">
+              <div className="flex flex-col md:flex-row gap-4 mt-4">
                 <Link
                   to="/product"
-                  className="bg-teal-600 text-white font-medium px-6 py-3 rounded-full hover:bg-teal-500 hover:cursor-pointer transition-transform hover:scale-105"
+                  className="w-full md:w-auto bg-teal-600 text-white font-medium px-6 py-3 rounded-full hover:bg-teal-500 hover:cursor-pointer transition-transform hover:scale-105"
                 >
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 items-center justify-center">
                     Get Early Access <ShoppingBag />
                   </div>
                 </Link>
@@ -107,7 +110,7 @@ const Home = () => {
                         behavior: "smooth",
                       });
                   }}
-                  className="border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black hover:cursor-pointer transition-transform hover:scale-105"
+                  className="w-full md:w-auto border border-white text-white font-medium px-6 py-3 rounded-full hover:bg-white hover:text-black hover:cursor-pointer transition-transform hover:scale-105"
                 >
                   How It Works
                 </button>
@@ -843,8 +846,8 @@ const Home = () => {
             </h2>
             <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-xl">
               Aligneye gives you the power to monitor, correct, and sustain your
-              posture - all from one intelligent device. Compact, comfortable, and
-              designed to work with your day.
+              posture - all from one intelligent device. Compact, comfortable,
+              and designed to work with your day.
             </p>
             <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
               {/* Original Price */}
@@ -946,7 +949,10 @@ const Home = () => {
             >
               Shop Now →
             </Link>
-            <Link to="/product" className="border border-gray-300 hover:scale-105 text-black px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:border-teal-500 hover:text-teal-600 hover:cursor-pointer transition-all duration-300">
+            <Link
+              to="/product"
+              className="border border-gray-300 hover:scale-105 text-black px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-medium hover:border-teal-500 hover:text-teal-600 hover:cursor-pointer transition-all duration-300"
+            >
               Explore More
             </Link>
           </motion.div>

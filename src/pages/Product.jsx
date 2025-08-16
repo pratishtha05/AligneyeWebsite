@@ -17,10 +17,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useCart } from "../context/CartContext";
-import productImg1 from "../assets/product_.webp";
-import productImg2 from "../assets/product.webp";
-import productImg3 from "../assets/imageTransparent.webp";
-import productImg4 from "../assets/person.webp";
 import atWork from "../assets/atWork.webp";
 import move from "../assets/onTheMove.webp";
 import home from "../assets/whileMeditation.webp";
@@ -29,12 +25,14 @@ import user2 from "../assets/user2.webp";
 import user3 from "../assets/user3.webp";
 import user4 from "../assets/user4.webp";
 import user5 from "../assets/user5.webp";
+import productImg1 from "../assets/img1.png";
+import productImg2 from "../assets/img2.png";
+import productImg3 from "../assets/img3.png";
 
 const ProductPage = () => {
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
   const [openFaq, setOpenFaq] = useState(null);
-  const [mainImage, setMainImage] = useState(productImg1);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const sectionRef = useRef(null);
@@ -46,7 +44,11 @@ const ProductPage = () => {
     discountPercent: 60,
     description:
       "A smart neckband that gently corrects your posture - so you don't have to think about it. Experience discreet, consistent support that adapts to your daily movements, guiding you towards better spinal alignment effortlessly.",
-    images: [productImg1, productImg2, productImg3, productImg4],
+    images: [
+      { url: productImg1, alt: "top view" },
+      { url: productImg2, alt: "front view" },
+      { url: productImg3, alt: "angle view" },
+    ],
     reviews: { avg: 4.7, count: 842 },
   };
 
@@ -112,6 +114,7 @@ const ProductPage = () => {
   const goPrev = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
+  const [mainImage, setMainImage] = useState(product.images[0]);
 
   return (
     <div className="bg-neutral-950 text-white pt-16 font-sans">
@@ -121,21 +124,21 @@ const ProductPage = () => {
         className="min-h-screen max-w-6xl mx-auto py-12 sm:py-16 px-4 grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12"
       >
         {/* Product Images */}
-        <div className="flex flex-col lg:flex-row gap-4">
-          {/* Vertical Thumbnails on the left (desktop only) */}
-          <div className="hidden lg:flex flex-col gap-3">
-            {product.images.map((imagePath, idx) => (
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full font-sans text-neutral-200">
+          {/* Vertical Thumbnails (desktop only) */}
+          <div className="hidden lg:flex flex-col gap-3 w-auto">
+            {product.images.map((image, idx) => (
               <div
                 key={idx}
-                onClick={() => setMainImage(imagePath)}
+                onClick={() => setMainImage(image)}
                 className={`w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-md border-2 cursor-pointer transition-all duration-200 ${
-                  mainImage === imagePath
+                  mainImage.url === image.url
                     ? "border-teal-500 shadow-md"
                     : "border-neutral-700 hover:border-neutral-500"
                 } bg-neutral-800`}
               >
                 <img
-                  src={imagePath}
+                  src={image.url}
                   alt={`Thumbnail ${idx + 1}`}
                   className="object-contain w-full h-full"
                 />
@@ -144,28 +147,28 @@ const ProductPage = () => {
           </div>
 
           {/* Main Image */}
-          <div className="relative flex justify-center items-center w-full aspect-square bg-neutral-300 rounded-lg overflow-hidden shadow-sm border border-neutral-700">
+          <div className="relative flex justify-center items-center w-full h-80 md:h-96 lg:h-[500px] bg-neutral-300 rounded-lg overflow-hidden shadow-sm border border-neutral-700">
             <img
-              src={mainImage}
-              alt={`${product.name} - ${mainImage}`}
+              src={mainImage.url}
+              alt={mainImage.alt}
               className="object-contain w-full h-full p-4"
             />
           </div>
 
-          {/* Mobile Thumbnails (lg:hidden) */}
+          {/* Mobile Thumbnails */}
           <div className="flex flex-wrap lg:hidden gap-3 justify-center mt-4">
-            {product.images.map((imagePath, idx) => (
+            {product.images.map((image, idx) => (
               <div
                 key={idx}
-                onClick={() => setMainImage(imagePath)}
+                onClick={() => setMainImage(image)}
                 className={`w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-md overflow-hidden border-2 cursor-pointer transition-all duration-200 ${
-                  mainImage === imagePath
+                  mainImage.url === image.url
                     ? "border-teal-500 shadow-md"
                     : "border-neutral-700 hover:border-neutral-500"
                 } bg-neutral-800`}
               >
                 <img
-                  src={imagePath}
+                  src={image.url}
                   alt={`Thumbnail ${idx + 1}`}
                   className="object-contain w-full h-full"
                 />
